@@ -32,8 +32,8 @@ struct EventViewModel {
         //  one begins before the other ends OR
         //  the other ends before one begins
         //  S1|----|E1   S2|----|E2
-        !(self.event.endDate <= event.event.startDate ||
-            self.event.startDate >= event.event.endDate)
+        !(self.event.endDate < event.event.startDate ||
+            self.event.startDate > event.event.endDate)
     }
 }
 
