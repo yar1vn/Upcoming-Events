@@ -13,6 +13,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+
+        do {
+            let events = try Event.parseEvents(from: "mock.json")
+            print(events)
+        } catch {
+            print(error)
+        }
     }
 
 

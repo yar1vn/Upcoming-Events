@@ -14,6 +14,9 @@
 		09BE723223EA702800325228 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09BE723123EA702800325228 /* Assets.xcassets */; };
 		09BE723523EA702800325228 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09BE723323EA702800325228 /* LaunchScreen.storyboard */; };
 		09BE724023EA702800325228 /* Upcoming_EventsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BE723F23EA702800325228 /* Upcoming_EventsTests.swift */; };
+		09BE724B23EA70AE00325228 /* mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 09BE724A23EA70AE00325228 /* mock.json */; };
+		09BE725323EA711A00325228 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BE725223EA711A00325228 /* Event.swift */; };
+		09BE725623EA783700325228 /* DateFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BE725523EA783700325228 /* DateFormatter+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,9 @@
 		09BE723B23EA702800325228 /* Upcoming EventsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Upcoming EventsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09BE723F23EA702800325228 /* Upcoming_EventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Upcoming_EventsTests.swift; sourceTree = "<group>"; };
 		09BE724123EA702800325228 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		09BE724A23EA70AE00325228 /* mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mock.json; sourceTree = "<group>"; };
+		09BE725223EA711A00325228 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		09BE725523EA783700325228 /* DateFormatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,13 +85,9 @@
 		09BE722723EA702700325228 /* Upcoming Events */ = {
 			isa = PBXGroup;
 			children = (
-				09BE722823EA702700325228 /* AppDelegate.swift */,
-				09BE722A23EA702700325228 /* SceneDelegate.swift */,
-				09BE722C23EA702700325228 /* ViewController.swift */,
-				09BE722E23EA702700325228 /* Main.storyboard */,
+				09BE724F23EA70EA00325228 /* App */,
 				09BE723123EA702800325228 /* Assets.xcassets */,
-				09BE723323EA702800325228 /* LaunchScreen.storyboard */,
-				09BE723623EA702800325228 /* Info.plist */,
+				09BE724C23EA70BE00325228 /* Misc */,
 			);
 			path = "Upcoming Events";
 			sourceTree = "<group>";
@@ -97,6 +99,45 @@
 				09BE724123EA702800325228 /* Info.plist */,
 			);
 			path = "Upcoming EventsTests";
+			sourceTree = "<group>";
+		};
+		09BE724C23EA70BE00325228 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				09BE724A23EA70AE00325228 /* mock.json */,
+				09BE722823EA702700325228 /* AppDelegate.swift */,
+				09BE722A23EA702700325228 /* SceneDelegate.swift */,
+				09BE723323EA702800325228 /* LaunchScreen.storyboard */,
+				09BE723623EA702800325228 /* Info.plist */,
+			);
+			name = Misc;
+			sourceTree = "<group>";
+		};
+		09BE724F23EA70EA00325228 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				09BE725423EA781E00325228 /* Extensions */,
+				09BE725123EA710D00325228 /* Model */,
+				09BE722C23EA702700325228 /* ViewController.swift */,
+				09BE722E23EA702700325228 /* Main.storyboard */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		09BE725123EA710D00325228 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				09BE725223EA711A00325228 /* Event.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		09BE725423EA781E00325228 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				09BE725523EA783700325228 /* DateFormatter+.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +224,7 @@
 				09BE723523EA702800325228 /* LaunchScreen.storyboard in Resources */,
 				09BE723223EA702800325228 /* Assets.xcassets in Resources */,
 				09BE723023EA702700325228 /* Main.storyboard in Resources */,
+				09BE724B23EA70AE00325228 /* mock.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,9 +242,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09BE725323EA711A00325228 /* Event.swift in Sources */,
 				09BE722D23EA702700325228 /* ViewController.swift in Sources */,
 				09BE722923EA702700325228 /* AppDelegate.swift in Sources */,
 				09BE722B23EA702700325228 /* SceneDelegate.swift in Sources */,
+				09BE725623EA783700325228 /* DateFormatter+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,7 +413,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.yariv.Upcoming-Events";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.yariv.upcomingevents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -387,7 +431,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.yariv.Upcoming-Events";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.yariv.upcomingevents;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
