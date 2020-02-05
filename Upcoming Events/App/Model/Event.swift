@@ -22,6 +22,12 @@ struct Event: Decodable, Hashable {
     }
 }
 
+extension Event: Comparable {
+    static func < (lhs: Event, rhs: Event) -> Bool {
+        lhs.startDate < rhs.startDate
+    }
+}
+
 extension Event {
     enum ParseError: Error {
         case invalidFile(String)
