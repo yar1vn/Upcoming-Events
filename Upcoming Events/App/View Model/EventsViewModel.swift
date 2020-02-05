@@ -26,7 +26,9 @@ struct EventViewModel {
     var title: String { model.title }
     var month: String { Self.monthFormatter.string(from: model.startDate).uppercased() }
     var day: String { "\(Calendar.current.component(.day, from: model.startDate))" }
-    var date: String { Self.dateFormatter.string(from: model.startDate, to: model.endDate) }
+    var date: String { Self.dateFormatter.string(from: model.startDate, to: model.endDate) + conflict }
+    var conflict: String { isConflicted ? "❗️" : "" }
+
     private(set) var isConflicted: Bool = false
     fileprivate let model: Event
 
