@@ -8,8 +8,6 @@
 
 import Foundation
 
-private let dateFormat = "MMMM d, yyyy h:mm a"
-
 struct Event: Decodable, Hashable {
     let title: String
     let startDate: Date
@@ -28,30 +26,34 @@ extension Event: Comparable {
     }
 }
 
+// MARK: - Decoding
+
+private let dateFormat = "MMMM d, yyyy h:mm a"
+
 extension Event {
-    enum ParseError: Error {
+    enum DecodeError: Error {
         case invalidFile(String)
-        case fileNotFound
+        case fileNotFound(String)
     }
-    
-    static func parseEvents(from fileName: String) throws -> [Event] {
+
+    static func decodeEvents(from fileName: String) throws -> [Event] {
         let fileComponents = fileName.split(separator: ".")
         guard fileComponents.count == 2,
             let resource = fileComponents.first,
             let `extension` = fileComponents.last
             else {
-                throw ParseError.invalidFile(fileName)
+                throw DecodeError.invalidFile(fileName)
         }
         guard let url = Bundle.main.url(forResource: String(resource), withExtension: String(`extension`)) else {
-            throw ParseError.fileNotFound
+            throw DecodeError.fileNotFound(fileName)
         }
         let data = try Data(contentsOf: url)
-        return try [Event](data: data)
+        return try [Event](data: data, dateFormat: dateFormat)
     }
 }
 
-extension Array where Element == Event {
-    init(data: Data) throws {
+private extension Array where Element == Event {
+    init(data: Data, dateFormat: String) throws {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .formatted(.init(dateFormat: dateFormat))
         self = try decoder.decode(type(of: self), from: data)

@@ -87,7 +87,7 @@ struct EventsViewModel {
     }
 }
 
-// MARK: - Table View Helper Functions
+// MARK: - Table View helper functions
 
 extension EventsViewModel {
     var sectionsCount: Int { days.count }
@@ -109,10 +109,10 @@ extension EventsViewModel {
     }
 }
 
-// MARK: - Custom intialiazer
+// MARK: - Decoding
 
 extension EventsViewModel {
     init(fileName: String) throws {
-        self.init(try Event.parseEvents(from: fileName))
+        self.init(try Event.decodeEvents(from: fileName))
     }
 }

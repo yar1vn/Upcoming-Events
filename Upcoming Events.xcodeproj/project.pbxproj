@@ -20,6 +20,7 @@
 		09BE725923EA80B500325228 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BE725823EA80B500325228 /* EventCell.swift */; };
 		09BE725B23EA813F00325228 /* TableViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BE725A23EA813F00325228 /* TableViewCell+.swift */; };
 		09BE725E23EA820B00325228 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BE725D23EA820B00325228 /* EventsViewModel.swift */; };
+		09BE726223EAA9E600325228 /* EventsViewModel+MockLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BE726123EAA9E600325228 /* EventsViewModel+MockLoading.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		09BE725823EA80B500325228 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		09BE725A23EA813F00325228 /* TableViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewCell+.swift"; sourceTree = "<group>"; };
 		09BE725D23EA820B00325228 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
+		09BE726123EAA9E600325228 /* EventsViewModel+MockLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventsViewModel+MockLoading.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				09BE725D23EA820B00325228 /* EventsViewModel.swift */,
+				09BE726123EAA9E600325228 /* EventsViewModel+MockLoading.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				09BE722D23EA702700325228 /* EventsViewController.swift in Sources */,
 				09BE722923EA702700325228 /* AppDelegate.swift in Sources */,
 				09BE722B23EA702700325228 /* SceneDelegate.swift in Sources */,
+				09BE726223EAA9E600325228 /* EventsViewModel+MockLoading.swift in Sources */,
 				09BE725B23EA813F00325228 /* TableViewCell+.swift in Sources */,
 				09BE725923EA80B500325228 /* EventCell.swift in Sources */,
 				09BE725623EA783700325228 /* DateFormatter+.swift in Sources */,

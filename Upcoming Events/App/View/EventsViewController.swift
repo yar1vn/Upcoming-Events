@@ -13,12 +13,37 @@ final class EventsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Upcoming Events"
+        loadData()
+    }
 
-        do {
-            self.events = try EventsViewModel(fileName: "mock.json")
-        } catch {
-            print(error)
+    private func loadData() {
+        // `load` guarantees calling completion on main queue so we can refresh UI here
+        EventsViewModel.load { [weak self] result in
+            guard let self = self else { return }
+
+            do {
+                self.events = try result.get()
+                self.tableView.reloadData()
+            } catch {
+                self.loadError(error)
+            }
         }
+    }
+
+    private func loadError(_ error: Error) {
+        let message =
+        """
+        Would you like to retry?
+        
+        (Error: \(error))
+        """
+        let alert = UIAlertController(title: "Cannot Load Data", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { _ in
+            self.loadData()
+        }))
+        alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
