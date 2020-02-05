@@ -24,7 +24,7 @@ final class EventsViewController: UITableViewController {
 
 extension EventsViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        events.title(section: section)
+        events.title(for: section)
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
         events.sectionsCount
@@ -49,7 +49,7 @@ extension EventCell {
         dateLabel.text = event.date
         dayLabel.text = event.day
         monthLabel.text = event.month
-
+        dateLabel.textColor = event.isConflicted ? .systemRed : .systemGray
         return self
     }
 }
