@@ -44,6 +44,7 @@ struct EventViewModel {
     ///
     /// - note: this method will ignore `self` if it's contained in `events`
     /// - complexity: O(n)
+    /// - returns: Updated `event` with an updated `isConflicated` value
     func checkConflicts(with events: [EventViewModel]) -> Self {
         let isConflicted = !events.filter {
             guard $0.model != self.model else { return false }
@@ -54,8 +55,21 @@ struct EventViewModel {
         return copy
     }
 
+    /// Check if `event` conflicts with `self`.
+    ///
+    /// - complexity: O(1)
+    mutating func checkConflicts(with event: EventViewModel) {
+        isConflicted = isConflicted || doesOverlap(event: event)
+    }
+
     init(_ event: Event) {
         self.model = event
+    }
+}
+
+extension EventViewModel: CustomDebugStringConvertible {
+    var debugDescription: String {
+        title + (isConflicted ? " (conflicted)" : "")
     }
 }
 
@@ -67,22 +81,47 @@ struct EventsViewModel {
 
     /// Create a View Model from an array of Model objects.
     ///
-    ///
-    /// - complexity: O(n^2)
+    /// - complexity: Solution 1: O(n log n)
+    /// - complexity: Solution 2: O(n^2)
     init(_ events: [Event] = []) {
-        // Sort and group events by day.
-        // sorting: O(n log n)
-        // grouping: O(n)
-        let groupedEvents = Dictionary(grouping: events.sorted().map(EventViewModel.init)) {
+        // Sort the events: O(n log n)
+        var events = events.sorted().map(EventViewModel.init)
+
+        // Assumption 1: An event can only conflict with its previous or subsequent event.
+        // Solution 1: Iterate over all the events and check conflicts with index-1 and index+1.
+        // Complexity: O(n)
+        // Overall Comlexity: Sort + Loop = O(n log n)
+        for index in (events.startIndex..<events.endIndex) {
+            let previousIndex = index-1
+            if previousIndex != index, previousIndex >= events.startIndex {
+                events[index].checkConflicts(with: events[previousIndex])
+            }
+            let nextIndex = index+1
+            if nextIndex != index, nextIndex < events.endIndex {
+                events[index].checkConflicts(with: events[nextIndex])
+            }
+        }
+
+        // Group events by day.
+        // Complexity: O(n)
+        let groupedEvents = Dictionary(grouping: events) {
             Calendar.current.startOfDay(for: $0.model.startDate)
         }
-        // O(n^2)
-        // However each event will only check conflicts with events in the same day.
+        self.events = groupedEvents
+
+        /*
+        // Assumption 2: An event can conflict with multiple events on the same day.
+        // Solution 2: Check conlicts only between same day events.
+        // Complexity: Worse case O(n^2) if ALL the events are in a single day.
+        //             Average case is much lower since the nested iteration is on a small subset of n.
+        //
         self.events = groupedEvents.mapValues { events in // O(n)
             events.map { event in
                 event.checkConflicts(with: events) // O(n)
             }
         }
+         */
+
         self.days = self.events.keys.sorted() // O(n log n)
     }
 }

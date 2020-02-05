@@ -126,8 +126,8 @@
 			isa = PBXGroup;
 			children = (
 				09BE725123EA710D00325228 /* Model */,
-				09BE725723EA7AD700325228 /* View */,
 				09BE725C23EA81EA00325228 /* View Model */,
+				09BE725723EA7AD700325228 /* View */,
 				09BE722E23EA702700325228 /* Main.storyboard */,
 			);
 			path = App;
